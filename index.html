@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Корзина</title>
+</head>
+<style>
+    li {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        align-items: center;
+        gap: 10px;
+    }
+    ul {
+        display: flex;
+        gap: 50px;
+    }
+    #cart {
+        display: flex;
+        gap: 30px;
+        width: 300px;
+    }
+    button {
+        background-color: #2d1f1f;
+        border: 0;
+        border-radius: 10px;
+        padding: 20px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    span {
+        color: #2d1f1f;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    h1 {
+        color: #785555;
+    }
+</style>
+<body>
+    <h1 >Товары</h1>
+<ul id="productList">
+<li><img src="img/5298886227967206776.jpg" id="photo" alt="photo" width="200px"> Товар 1 <button class="addToCart" data-product="Товар 1">Добавить в корзину</button></li> 
+<li><img src="img/5298886227967206776.jpg" id="photo" alt="photo" width="200px">Товар 2 <button class="addToCart" data-product="Товар 2">Добавить в корзину</button></li> 
+<li><img src="img/5298886227967206776.jpg" id="photo" alt="photo" width="200px">Товар 3 <button class="addToCart" data-product="Товар 3">Добавить в корзину</button></li> 
+</ul>
+<h1>Корзина</h1>
+<ul id="cart"></ul>
+<p>Общее количество товаров: <span id="totalCount">@</span></p> 
+<script>
+    $(document).ready(function() {
+    let totalCount = 0;
+
+    $('.addToCart').click(function() {
+        const productName = $(this).data('product');
+        $('#cart').append(
+            '<li class ="card-item">' + '<img src="img/5298886227967206776.jpg" alt="photo" width="200px">' + productName + '<button class="removeFromCart">удалить</button><li>'
+        );
+        totalCount++;
+        $('#totalCount').text(totalCount);
+    });
+
+    $('#cart').on('click', '.removeFromCart', function() {
+        $(this).closest('.card-item').remove();
+        totalCount--;
+        $('#totalCount').text(totalCount);
+    });
+});
+</script>
+</body>
+</html>
